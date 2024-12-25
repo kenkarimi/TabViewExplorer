@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct TabViewExplorerApp: App {
+    @StateObject private var navigationHistory: NavigationHistory = NavigationHistory()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(navigationHistory)
         }
     }
 }
