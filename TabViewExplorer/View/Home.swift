@@ -8,22 +8,25 @@
 import SwiftUI
 
 struct Home: View {
+    @State private var show_tabs: Bool = true
     
     var body: some View {
-        VStack {
-            //You can have this in the middle of the View as well.
-            TabView {
-                Text("Tab 1 Content") //Content view with content shown when tab is clicked.
-                    .tabItem {
-                        Label("One", systemImage: "star")
-                    }
-                Text("Tab 2 Content")
-                    .tabItem {
-                        Label("Two", systemImage: "circle")
-                    } //Used to associate each content view with the correct tab.
-            }
-        } //VStack
-        .padding()
+        ZStack { //When the tabs are visible, the tab content should appear on top of this views content.
+            Text("Home")
+            if show_tabs {
+                //You can have this in the middle of the View as well.
+                TabView {
+                    Text("Tab 1 Content") //Content view with content shown when tab is clicked.
+                        .tabItem {
+                            Label("One", systemImage: "star")
+                        }
+                    Text("Tab 2 Content")
+                        .tabItem {
+                            Label("Two", systemImage: "circle")
+                        } //Used to associate each content view with the correct tab.
+                } //TabView
+            } //Conditional
+        } //ZStack
         .navigationTitle("Home")
         .navigationBarBackButtonHidden(true)
         .toolbar { //Replaces the soon to be deprecated .navigationBarItems(trailing:)

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct Splash: View {
     var body: some View {
-        NavigationLink("Go to Home...", value: GlobalEnumerations.Views.home4)
+        NavigationLink("Go to Home...", value: GlobalEnumerations.Views.home6)
             .navigationTitle("Splash")
             .navigationBarBackButtonHidden(true)
             .onAppear {

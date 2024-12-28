@@ -15,6 +15,8 @@ import SwiftUI
  * The NavigationStack manages the overall navigation flow of the app.
  * The TabView provides a way to switch between different sections or modules within that navigation hierarchy.
  * Each tab can have its own navigation stack within it, enabling deeper levels of navigation within each section.
+ * Gemini question & https://www.hackingwithswift.com/books/ios-swiftui/creating-tabs-with-tabview-and-tabitem
+ * A more customizable option: https://medium.com/geekculture/custom-tabbar-in-swiftui-4d239410ee73 
  */
 
 struct ContentView: View {
@@ -40,6 +42,10 @@ struct ContentView: View {
                     Home3()
                 case .home4:
                     Home4()
+                case .home5:
+                    Home5()
+                case .home6:
+                    Home6()
                 }
             }
             .navigationTitle("ContentView")

@@ -7,8 +7,11 @@
 
 import SwiftUI
 
+//In this apprach, the TabView contains both the content and the actual tabs. This approach isn't very flexible. You can only change the tint/accent color & the unselected item tint color but the background is very inflexible.
+
 struct Home4: View {
-    @State private var selectedHistoryTab: GlobalEnumerations.SelectedHistoryTab = .default_value
+    @State private var show_tabs: Bool = true
+    @State private var selectedHistoryTab: GlobalEnumerations.SelectedHistoryTab = .upcoming
     
     let history_tabs: [HistoryTab] = [
         HistoryTab(id: .past, title: "Past"),
@@ -17,43 +20,48 @@ struct Home4: View {
     ]
     
     var body: some View {
-        VStack {
-            TabView(selection: $selectedHistoryTab) {
-                ForEach(history_tabs, id: \.id) { history_tab in
-                    if history_tab.id == GlobalEnumerations.SelectedHistoryTab.past {
-                        Button {
-                            selectedHistoryTab = .present
-                        } label: {
-                            PastTab()
+        ZStack { //When the tabs are visible, the tab content should appear on top of this views content.
+            Text("Home")
+            if show_tabs {
+                TabView(selection: $selectedHistoryTab) {
+                    ForEach(history_tabs, id: \.id) { history_tab in
+                        if history_tab.id == GlobalEnumerations.SelectedHistoryTab.past {
+                            PastTab(
+                                selectedHistoryTab: $selectedHistoryTab
+                            )
+                            .tabItem {
+                                Text(history_tab.title)
+                            }
+                            .tag(history_tab.id) //Used to associate each content view with the correct tab and allows for tabs to be selected programatically by changing the selectedHistoryTab state property.
+                        } else if history_tab.id == GlobalEnumerations.SelectedHistoryTab.present {
+                            PresentTab(
+                                selectedHistoryTab: $selectedHistoryTab
+                            )
+                            .tabItem {
+                                Text(history_tab.title)
+                            }
+                            .tag(history_tab.id)
+                        } else if history_tab.id == GlobalEnumerations.SelectedHistoryTab.upcoming {
+                            UpcomingTab(
+                                selectedHistoryTab: $selectedHistoryTab
+                            )
+                            .tabItem {
+                                Text(history_tab.title)
+                            }
+                            .tag(history_tab.id)
                         }
-                        .tabItem {
-                            Text(history_tab.title)
-                        }
-                        .tag(history_tab.id)
-                    } else if history_tab.id == GlobalEnumerations.SelectedHistoryTab.present {
-                        Button {
-                            selectedHistoryTab = .upcoming
-                        } label: {
-                            PresentTab()
-                        }
-                        .tabItem {
-                            Text(history_tab.title)
-                        }
-                        .tag(history_tab.id)
-                    } else if history_tab.id == GlobalEnumerations.SelectedHistoryTab.upcoming {
-                        Button {
-                            selectedHistoryTab = .past
-                        } label: {
-                            UpcomingTab()
-                        }
-                        .tabItem {
-                            Text(history_tab.title)
-                        }
-                        .tag(history_tab.id)
-                    }
+                    } //ForEach
+                } //TabView
+                .accentColor(Color.red) //Alternative: .tint()
+                //.tint(.red) //Could be white with a red toolbar background.
+                //.tabViewStyle(.page) //Makes the tabs swipeable pages with no tab bar.
+                .onAppear {
+                    UITabBar.appearance().unselectedItemTintColor = .gray
                 }
-            }
-        } //VStack
+            } //Conditional
+        } //ZStack
+        .navigationTitle("Home4")
+        .navigationBarBackButtonHidden(false)
         .toolbar { //Replaces the soon to be deprecated .navigationBarItems(trailing:)
             ToolbarItem(placement: .topBarTrailing) {
                 Menu {
