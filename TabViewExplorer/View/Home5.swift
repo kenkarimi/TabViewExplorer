@@ -26,7 +26,7 @@ struct Home5: View {
                 }
                 
                 HStack {
-                    ForEach(GlobalEnumerations.SelectedMailTab.allCases, id: \.self) { item in
+                    ForEach(GlobalEnumerations.MailTab.allCases, id: \.self) { item in
                         Button { //The .tabItem usually has its own mechanism for changing the selectedMailTab to the one clicked but since we're using custom tabs, we have to use a button to manually change selectedMailTab to the intended tag value.
                             selectedMailTab = item.rawValue //The corresponding value of the raw type.
                         } label: {

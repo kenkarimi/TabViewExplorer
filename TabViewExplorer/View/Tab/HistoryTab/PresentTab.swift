@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PresentTab: View {
-    @Binding var selectedHistoryTab: GlobalEnumerations.SelectedHistoryTab
+    @Binding var selectedHistoryTab: GlobalEnumerations.HistoryTab
     
     var body: some View {
         VStack(spacing: 10) {
@@ -24,7 +24,7 @@ struct PresentTab: View {
 }
 
 struct PresentTabHolder: View {
-    @State private var selectedHistoryTab: GlobalEnumerations.SelectedHistoryTab = .upcoming
+    @State private var selectedHistoryTab: GlobalEnumerations.HistoryTab = .present
     
     var body: some View {
         PresentTab(

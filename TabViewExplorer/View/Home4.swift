@@ -11,7 +11,7 @@ import SwiftUI
 
 struct Home4: View {
     @State private var show_tabs: Bool = true
-    @State private var selectedHistoryTab: GlobalEnumerations.SelectedHistoryTab = .upcoming
+    @State private var selectedHistoryTab: GlobalEnumerations.HistoryTab = .past
     
     let history_tabs: [HistoryTab] = [
         HistoryTab(id: .past, title: "Past"),
@@ -25,7 +25,7 @@ struct Home4: View {
             if show_tabs {
                 TabView(selection: $selectedHistoryTab) {
                     ForEach(history_tabs, id: \.id) { history_tab in
-                        if history_tab.id == GlobalEnumerations.SelectedHistoryTab.past {
+                        if history_tab.id == GlobalEnumerations.HistoryTab.past {
                             PastTab(
                                 selectedHistoryTab: $selectedHistoryTab
                             )
@@ -33,7 +33,7 @@ struct Home4: View {
                                 Text(history_tab.title)
                             }
                             .tag(history_tab.id) //Used to associate each content view with the correct tab and allows for tabs to be selected programatically by changing the selectedHistoryTab state property.
-                        } else if history_tab.id == GlobalEnumerations.SelectedHistoryTab.present {
+                        } else if history_tab.id == GlobalEnumerations.HistoryTab.present {
                             PresentTab(
                                 selectedHistoryTab: $selectedHistoryTab
                             )
@@ -41,7 +41,7 @@ struct Home4: View {
                                 Text(history_tab.title)
                             }
                             .tag(history_tab.id)
-                        } else if history_tab.id == GlobalEnumerations.SelectedHistoryTab.upcoming {
+                        } else if history_tab.id == GlobalEnumerations.HistoryTab.upcoming {
                             UpcomingTab(
                                 selectedHistoryTab: $selectedHistoryTab
                             )

@@ -12,15 +12,15 @@ struct GlobalEnumerations {
         case splash, home, home2, home3, home4, home5, home6
     }
     
-    enum SelectedFoodTab {
-        case milk, honey, default_value
+    enum FoodTab {
+        case milk, honey
     }
     
-    enum SelectedHistoryTab {
-        case past, present, upcoming, default_value
+    enum HistoryTab {
+        case past, present, upcoming
     }
     
-    enum SelectedMailTab: Int, CaseIterable { //Conforming to Int means all cases have Integer values. CaseIterable means you have to iterate over enum cases.
+    enum MailTab: Int, CaseIterable { //Conforming to Int means all cases have Integer values. CaseIterable means you have to iterate over enum cases.
         case inbox = 0, sent, drafts
         
         //Instead of having a model in the Model folder as we've done with the other examples, we have it here, which is why this enum extends CaseIterable.
@@ -40,14 +40,14 @@ struct GlobalEnumerations {
             case .inbox:
                 return "envelope.open.fill"
             case .sent:
-                return "envelope.fill"
+                return "paperplane.fill"
             case .drafts:
-                return "envelope.badge.fill"
+                return "newspaper.fill" //note.text
             }
         }
     }
     
-    enum SelectedGenderTab {
+    enum GenderTab {
         case male, female, other
     }
     

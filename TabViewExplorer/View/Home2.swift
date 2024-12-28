@@ -9,7 +9,7 @@ import SwiftUI
 
 struct Home2: View {
     @State private var show_tabs: Bool = true
-    @State private var selectedFoodTab: GlobalEnumerations.SelectedFoodTab = .default_value
+    @State private var selectedFoodTab: GlobalEnumerations.FoodTab = .milk
     
     var body: some View {
         ZStack { //When the tabs are visible, the tab content should appear on top of this views content.
@@ -24,7 +24,7 @@ struct Home2: View {
                     .tabItem {
                         Label("Milk", systemImage: "star")
                     }
-                    .tag(GlobalEnumerations.SelectedFoodTab.milk) //Used to associate each content view with the correct tab and allows for tabs to be selected programatically by changing the selectedTab state property.
+                    .tag(GlobalEnumerations.FoodTab.milk) //Used to associate each content view with the correct tab and allows for tabs to be selected programatically by changing the selectedTab state property.
                     Button {
                         selectedFoodTab = .milk
                     } label: {
@@ -33,7 +33,7 @@ struct Home2: View {
                     .tabItem {
                         Label("Honey", systemImage: "circle")
                     }
-                    .tag(GlobalEnumerations.SelectedFoodTab.honey) //Used to associate each content view with the correct tab and allows for tabs to be selected programatically by changing the selectedTab state property.
+                    .tag(GlobalEnumerations.FoodTab.honey) //Used to associate each content view with the correct tab and allows for tabs to be selected programatically by changing the selectedTab state property.
                 } //TabView
             } //COnditional
         } //ZStack

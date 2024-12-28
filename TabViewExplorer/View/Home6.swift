@@ -9,7 +9,7 @@ import SwiftUI
 
 struct Home6: View {
     @State private var show_tabs: Bool = true
-    @State private var selectedGenderTab: GlobalEnumerations.SelectedGenderTab = .male //We can still use cases which aren't enumerated with Integers.
+    @State private var selectedGenderTab: GlobalEnumerations.GenderTab = .male //We can still use cases which aren't enumerated with Integers.
     private let genderTabs: [GenderTab] = [
         GenderTab(id: .male, title: "Male", icon: "figure.dress.line.vertical.figure"),
         GenderTab(id: .female, title: "Female", icon: "figure.dress.line.vertical.figure"),
@@ -22,11 +22,11 @@ struct Home6: View {
             if show_tabs {
                 TabView(selection: $selectedGenderTab) {
                     MaleTab()
-                        .tag(GlobalEnumerations.SelectedGenderTab.male) //Used to associate each content view with the correct tab and allows for tabs to be selected programatically by changing the selectedMailTab state property.
+                        .tag(GlobalEnumerations.GenderTab.male) //Used to associate each content view with the correct tab and allows for tabs to be selected programatically by changing the selectedMailTab state property.
                     FemaleTab()
-                        .tag(GlobalEnumerations.SelectedGenderTab.female)
+                        .tag(GlobalEnumerations.GenderTab.female)
                     OtherTab()
-                        .tag(GlobalEnumerations.SelectedGenderTab.other)
+                        .tag(GlobalEnumerations.GenderTab.other)
                 }
                 
                 HStack {
