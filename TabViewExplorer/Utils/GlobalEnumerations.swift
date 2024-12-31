@@ -20,11 +20,11 @@ struct GlobalEnumerations {
         case past, present, upcoming
     }
     
-    enum MailTab: Int, CaseIterable { //Conforming to Int means all cases have Integer values. CaseIterable means you have to iterate over enum cases.
+    enum MailTab: Int, CaseIterable { //Conforming to Int means all cases have Integer values. CaseIterable means you can iterate over enum cases.
         case inbox = 0, sent, drafts
         
         //Instead of having a model in the Model folder as we've done with the other examples, we have it here, which is why this enum extends CaseIterable.
-        var title: String {
+        var title: String { //Computed property.
             switch self {
             case .inbox:
                 return "Inbox"
@@ -35,7 +35,7 @@ struct GlobalEnumerations {
             }
         }
         
-        var icon: String {
+        var icon: String { //Computed property.
             switch self {
             case .inbox:
                 return "envelope.open.fill"
