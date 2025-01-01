@@ -43,6 +43,9 @@ struct Home5: View {
         } //ZStack
         .navigationTitle("Home5")
         .navigationBarBackButtonHidden(false)
+        .onAppear {
+            //show_tabs = true
+        }
         .toolbar { //Replaces the soon to be deprecated .navigationBarItems(trailing:)
             ToolbarItem(placement: .topBarTrailing) {
                 Menu {
